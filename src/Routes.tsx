@@ -1,31 +1,29 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { PAGE_URL } from "./constants/application";
 import Home from "./pages/Home";
-import LogIn from "./pages/LogIn";
 import MyPreference from "./pages/MyPreference";
 import MyResume from "./pages/MyResume";
 import NotFound from "./pages/NotFound";
 import RandomMatch from "./pages/RandomMatch";
-import SignIn from "./pages/SignIn";
+import Post from "./pages/Post";
+import Layout from "./components/feature/Layout";
 
 const Router = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
           <Route path={`${PAGE_URL.HOME}`} element={<Home />} />
           <Route path={`${PAGE_URL.ABOUT}`} element={<Home />} />
-          <Route
-            path={`${PAGE_URL.MY_PREFERENCE}`}
-            element={<MyPreference />}
-          />
+          <Route path={`${PAGE_URL.JOB_POSTS}`} element={<Post />} />
+          <Route path={`${PAGE_URL.TEAM_POSTS}`} element={<Post />} />
+          <Route path={`${PAGE_URL.MY_PREFERENCE}`} element={<MyPreference />} />
           <Route path={`${PAGE_URL.MY_RESUME}`} element={<MyResume />} />
           <Route path={`${PAGE_URL.RANDOM_MATCH}`} element={<RandomMatch />} />
-          <Route path={`${PAGE_URL.SIGN_IN}`} element={<SignIn />} />
-          <Route path={`${PAGE_URL.LOG_IN}`} element={<LogIn />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+        </Route>
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </>
   );
 };

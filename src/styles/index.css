@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: InterVariable, sans-serif;
+}
+
+@layer base {
+    .google-map * {
+        border-style: none;
+    }
+}

@@ -1,7 +1,9 @@
-import React from "react";
-
 const RandomMatch = () => {
-  return <div>RandomMatch</div>;
+  return (
+    <>
+      <div>Random match</div>
+    </>
+  );
 };
 
 export default RandomMatch;
