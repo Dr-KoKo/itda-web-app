@@ -7,12 +7,13 @@ import NotFound from "./pages/NotFound";
 import RandomMatch from "./pages/RandomMatch";
 import Post from "./pages/Post";
 import Layout from "./components/feature/Layout";
+import RouterErrorBoundary from "./components/errors/RouterErrorBoundary";
 
 const Router = () => {
   return (
     <>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<Layout />} errorElement={<RouterErrorBoundary />}>
           <Route index element={<Home />} />
           <Route path={`${PAGE_URL.HOME}`} element={<Home />} />
           <Route path={`${PAGE_URL.ABOUT}`} element={<Home />} />

@@ -6,5 +6,4 @@ export const PAGE_URL = {
     RANDOM_MATCH: "/random-match",
     MY_RESUME: "/my-resume",
     MY_PREFERENCE: "/my-preference",
-    LOG_IN: "/log-in",
 }
