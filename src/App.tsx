@@ -31,6 +31,7 @@ function App() {
 
   return (
     <>
+      {/* todo: clear use of useAuth() in App.tsx, and move "AuthProvider" from main.tsx into App.tsx*/}
       <BrowserRouter>
         <Router />
       </BrowserRouter>
