@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import Router from "./Routes";
+import Router from "./routes/Routes";
 import { useAuth } from "react-oidc-context";
 
 function App() {
