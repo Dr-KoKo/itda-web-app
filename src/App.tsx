@@ -1,42 +1,27 @@
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/Routes";
-import { useAuth } from "react-oidc-context";
+import { AuthProvider } from "react-oidc-context";
+import { AUTH_URL } from "./constants/application";
 
-function App() {
-  const auth = useAuth();
+const oidcConfig = {
+  authority: AUTH_URL.AUTHORITY,
+  client_id: AUTH_URL.CLIENT_ID,
+  redirect_uri: AUTH_URL.REDIRECT_URI,
+  onSigninCallback: () => {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  },
+};
 
-  switch (auth.activeNavigator) {
-    case "signinSilent":
-      return <div>Signing you in...</div>;
-    case "signoutRedirect":
-      return <div>Signing you out...</div>;
-  }
-
-  if (auth.isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (auth.error) {
-    return <div>Oops... {auth.error.message}</div>;
-  }
-
-  if (auth.isAuthenticated) {
-    return (
-      <div>
-        Hello {auth.user?.profile.sub}{" "}
-        <button onClick={() => void auth.removeUser()}>Log out</button>
-      </div>
-    );
-  }
-
+const App = () => {
   return (
     <>
-      {/* todo: clear use of useAuth() in App.tsx, and move "AuthProvider" from main.tsx into App.tsx*/}
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <AuthProvider {...oidcConfig}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </AuthProvider>
     </>
   );
-}
+};
 
 export default App;
